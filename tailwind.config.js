@@ -9,6 +9,12 @@ module.exports = {
     './*.md',
     './*.html',
   ],
+  safelist: [
+    'block',
+    'hidden',
+    'dark:block',
+    'dark:hidden',
+  ],
   theme: {
     extend: {
       fontFamily: {
