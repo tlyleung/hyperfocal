@@ -1,0 +1,16 @@
+<header>
+  <div>
+    {%- assign default_paths = site.pages | map: "path" -%} {%- assign page_paths = site.nav_pages | default:
+    default_paths -%} {%- assign page_titles = site.pages | map: 'title' | compact %}
+    <a rel="author" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+
+    {%- unless page_titles == empty %}
+    <nav>
+      {%- for path in page_paths -%} {%- assign hyperpage = site.pages | where: "path", path | first -%} {%- if
+      hyperpage.title %}
+      <a href="{{ hyperpage.url | relative_url }}">{{ hyperpage.title | escape }}</a>
+      {%- endif -%} {%- endfor %}
+    </nav>
+    {%- endunless %}
+  </div>
+</header>

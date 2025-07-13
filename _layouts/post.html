@@ -1,0 +1,30 @@
+---
+layout: base
+---
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <h1 itemprop="name headline">{{ page.title | escape }}</h1>
+    <div>
+      {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%} {% assign pdate = page.date |
+      date_to_xmlschema %} {%- if page.modified_date %}<span>Published:</span>{% endif %}
+      <time datetime="{{ pdate }}" itemprop="datePublished"> {{ pdate | date: date_format }} </time>
+      {%- if page.modified_date -%}
+      <span>•</span>
+      <span>Updated:</span>
+      {%- assign mdate = page.modified_date | date_to_xmlschema %}
+      <time datetime="{{ mdate }}" itemprop="dateModified"> {{ mdate | date: date_format }} </time>
+      {%- endif -%} {%- if page.author %}
+      <div>
+        {%- for author in page.author %}
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">{{ author }}</span></span
+        >
+        {%- if forloop.last == false %}, {% endif -%} {% endfor %}
+      </div>
+      {%- endif %}
+    </div>
+  </header>
+  <div itemprop="articleBody">{{ content }}</div>
+  <a href="{{ page.url | relative_url }}" hidden></a>
+</article>
