@@ -1,16 +1,29 @@
-<header>
-  <div>
+<header
+  class="sticky top-0 mb-6 flex items-center border-b border-zinc-950/10 bg-white px-4 md:px-8 dark:border-white/10 dark:bg-zinc-900"
+>
+  <nav class="flex flex-1 items-center justify-between gap-4 py-1 sm:py-2.5">
     {%- assign default_paths = site.pages | map: "path" -%} {%- assign page_paths = site.nav_pages | default:
     default_paths -%} {%- assign page_titles = site.pages | map: 'title' | compact %}
-    <a rel="author" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+    <span class="relative">
+      <a
+        class="relative flex min-w-0 items-center gap-3 rounded-lg p-2 text-left text-sm/5 text-zinc-950 hover:bg-zinc-950/5 active:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5 dark:active:bg-white/5"
+        rel="author"
+        href="{{ '/' | relative_url }}"
+        >{{ site.title | escape }}</a
+      >
+    </span>
 
     {%- unless page_titles == empty %}
-    <nav>
+    <nav class="flex items-center gap-1 sm:gap-3">
       {%- for path in page_paths -%} {%- assign hyperpage = site.pages | where: "path", path | first -%} {%- if
       hyperpage.title %}
-      <a href="{{ hyperpage.url | relative_url }}">{{ hyperpage.title | escape }}</a>
+      <a
+        class="relative flex min-w-0 items-center gap-3 rounded-lg p-2 text-left text-sm/5 text-zinc-950 hover:bg-zinc-950/5 active:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5 dark:active:bg-white/5"
+        href="{{ hyperpage.url | relative_url }}"
+        >{{ hyperpage.title | escape }}</a
+      >
       {%- endif -%} {%- endfor %}
     </nav>
     {%- endunless %}
-  </div>
+  </nav>
 </header>
