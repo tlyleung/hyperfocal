@@ -1,27 +1,85 @@
 <header
-  class="sticky top-0 mb-6 flex items-center border-b border-zinc-950/10 bg-white px-4 md:px-8 dark:border-white/10 dark:bg-zinc-900"
+  class="sticky top-0 z-10 flex items-center border-b border-zinc-950/10 bg-white px-4 sm:px-8 dark:border-white/10 dark:bg-zinc-900"
 >
-  <nav class="flex flex-1 items-center justify-between gap-4 py-1 sm:py-2.5">
+  <nav class="flex flex-1 items-center justify-between gap-4 py-1 sm:py-1.5">
     {%- assign default_paths = site.pages | map: "path" -%} {%- assign page_paths = site.nav_pages | default:
     default_paths -%} {%- assign page_titles = site.pages | map: 'title' | compact %}
-    <span class="relative">
-      <a
-        class="relative flex min-w-0 items-center gap-3 rounded-lg p-2 text-left text-sm/5 text-zinc-950 hover:bg-zinc-950/5 active:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5 dark:active:bg-white/5"
-        rel="author"
-        href="{{ '/' | relative_url }}"
-        >{{ site.title | escape }}</a
+
+    <el-dropdown class="inline-block">
+      <button
+        class="group inline-flex w-full items-center justify-center gap-x-1.5 rounded-lg p-2 text-sm/5 text-zinc-950 hover:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5"
       >
-    </span>
+        <svg
+          viewBox="0 0 24 24"
+          data-slot="icon"
+          aria-hidden="true"
+          class="size-6 fill-current stroke-current text-zinc-950 sm:size-7 dark:text-white"
+        >
+          <use href="/assets/images/shared/logos.svg#{{ site.title | slugify }}"></use>
+        </svg>
+
+        <span style="font-family: '{{ site.sites[site.title].font }}', sans-serif;" class="truncate"
+          >{{ site.title }}</span
+        >
+        <svg
+          viewBox="0 0 20 20"
+          data-slot="icon"
+          aria-hidden="true"
+          class="-mr-1 size-5 fill-current text-zinc-500 dark:text-zinc-400"
+        >
+          <path
+            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </button>
+
+      <el-menu
+        anchor="bottom end"
+        popover
+        class="focus:outline-hidden 5 m-0 w-max min-w-56 origin-top-right overflow-y-auto rounded-xl bg-white/75 p-1 shadow-lg outline outline-transparent ring-1 ring-zinc-950/10 backdrop-blur-xl transition [--anchor-gap:theme(spacing.2)] [--anchor-offset:-6px] [transition-behavior:allow-discrete] data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-100 data-[enter]:ease-out data-[leave]:ease-in dark:bg-zinc-800/75 dark:ring-inset dark:ring-white/10"
+      >
+        {% for item in site.sites -%} {%- assign title = item[0] -%} {%- assign dict = item[1] -%}
+        <a
+          href="{%- if title == site.title -%}/{%- else -%}{{ dict.url }}{%- endif -%}"
+          class="group/item focus:outline-hidden col-span-full grid grid-cols-[auto_1fr_1.5rem_0.5rem_auto] items-center rounded-lg px-3 py-1.5 text-left text-sm/5 text-zinc-950 focus:bg-blue-500 focus:text-white sm:px-3.5 sm:py-2.5 sm:text-base/6 dark:text-white"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            data-slot="icon"
+            aria-hidden="true"
+            class="col-start-1 row-start-1 -ml-0.5 mr-2.5 size-4 fill-current stroke-current text-zinc-950 group-focus/item:text-white sm:mr-2 sm:size-5 dark:text-white dark:group-focus/item:text-white"
+          >
+            <use href="/assets/images/shared/logos.svg#{{ title | slugify }}"></use>
+          </svg>
+          <div data-slot="label" style="font-family: '{{ dict.font }}', sans-serif;" class="col-start-2 row-start-1">
+            {{ title }}
+          </div>
+        </a>
+        {% endfor %}
+      </el-menu>
+    </el-dropdown>
 
     {%- unless page_titles == empty %}
     <nav class="flex items-center gap-1 sm:gap-3">
       {%- for path in page_paths -%} {%- assign hyperpage = site.pages | where: "path", path | first -%} {%- if
       hyperpage.title %}
-      <a
-        class="relative flex min-w-0 items-center gap-3 rounded-lg p-2 text-left text-sm/5 text-zinc-950 hover:bg-zinc-950/5 active:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5 dark:active:bg-white/5"
-        href="{{ hyperpage.url | relative_url }}"
-        >{{ hyperpage.title | escape }}</a
-      >
+      <span class="relative">
+        {% if hyperpage.url == page.url %}
+        <span
+          class="absolute inset-x-2 -bottom-2 h-0.5 rounded-full bg-zinc-950 sm:-bottom-2.5 dark:bg-white"
+          style="transform: none; transform-origin: 50% 50% 0px"
+        ></span>
+        {% endif %}
+        <a
+          aria-current="{%- if hyperpage.url == page.url -%}page{%- endif -%}"
+          class="relative flex min-w-0 items-center gap-3 rounded-lg p-1.5 text-left text-sm/5 text-zinc-950 hover:bg-zinc-950/5 active:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5 dark:active:bg-white/5"
+          href="{{ hyperpage.url | relative_url }}"
+        >
+          {{ hyperpage.title | escape }}
+        </a>
+      </span>
       {%- endif -%} {%- endfor %}
     </nav>
     {%- endunless %}

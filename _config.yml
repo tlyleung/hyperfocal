@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+title: Acta Machina
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -32,6 +32,17 @@ github_username: jekyll
 # The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%-d %B %Y"
+
+sites:
+  "Acta Machina":
+    font: "Inter"
+    url: "https://actamachina.com"
+  "hyperfocal":
+    font: "Jost"
+    url: "https://hyperfocalphotos.com"
+  "Procedural":
+    font: "Nunito Sans"
+    url: "https://proceduralgallery.com"
 
 # Build settings
 plugins:
