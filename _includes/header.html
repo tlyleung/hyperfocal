@@ -61,27 +61,43 @@
       </el-menu>
     </el-dropdown>
 
-    {%- unless page_titles == empty %}
     <nav class="flex items-center gap-1 sm:gap-3">
-      {%- for path in page_paths -%} {%- assign hyperpage = site.pages | where: "path", path | first -%} {%- if
-      hyperpage.title %}
       <span class="relative">
-        {% if hyperpage.url == page.url %}
         <span
           class="absolute inset-x-2 -bottom-2 h-0.5 rounded-full bg-zinc-950 sm:-bottom-2.5 dark:bg-white"
           style="transform: none; transform-origin: 50% 50% 0px"
         ></span>
-        {% endif %}
         <a
-          aria-current="{%- if hyperpage.url == page.url -%}page{%- endif -%}"
+          aria-current="{%- if page.url == '/' or page.url contains '/posts/' -%}page{%- endif -%}"
           class="relative flex min-w-0 items-center gap-3 rounded-lg p-1.5 text-left text-sm/5 text-zinc-950 hover:bg-zinc-950/5 active:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5 dark:active:bg-white/5"
-          href="{{ hyperpage.url | relative_url }}"
+          href="/"
         >
-          {{ hyperpage.title | escape }}
+          Photos
         </a>
       </span>
-      {%- endif -%} {%- endfor %}
+      <span class="relative">
+        <a
+          class="relative flex min-w-0 items-center gap-1 rounded-lg p-1.5 text-left text-sm/5 text-zinc-950 hover:bg-zinc-950/5 active:bg-zinc-950/5 sm:text-base/6 dark:text-white dark:hover:bg-white/5 dark:active:bg-white/5"
+          href="https://www.instagram.com/{{ site.instagram_username }}/"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+            class="size-4 sm:size-5"
+          >
+            <path
+              d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z"
+            ></path>
+            <path
+              d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z"
+            ></path>
+          </svg>
+          Instagram
+        </a>
+      </span>
     </nav>
-    {%- endunless %}
   </nav>
 </header>
