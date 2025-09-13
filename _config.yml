@@ -18,21 +18,25 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Acta Machina
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+title: hyperfocal
+tagline: Photo Blog
+email: timothyleung@gmail.com
+description: Photo Blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username: jekyll
+url: "https://hyperfocalphotos.com" # the base hostname & protocol for your site, e.g. http://example.com
+instagram_username: hyperfocalphotos
 
 # The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%-d %B %Y"
 
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:collection/:title
+
+# Sibling sites
 sites:
   "Acta Machina":
     font: "Inter"
@@ -48,6 +52,8 @@ sites:
 plugins:
   - jekyll-feed
   - jekyll-postcss
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 postcss:
   cache: false
