@@ -2,29 +2,18 @@
 layout: base
 ---
 
-<article itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    <h1 itemprop="name headline">{{ page.title | escape }}</h1>
-    <div>
-      {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%} {% assign pdate = page.date |
-      date_to_xmlschema %} {%- if page.modified_date %}<span>Published:</span>{% endif %}
-      <time datetime="{{ pdate }}" itemprop="datePublished"> {{ pdate | date: date_format }} </time>
-      {%- if page.modified_date -%}
-      <span>•</span>
-      <span>Updated:</span>
-      {%- assign mdate = page.modified_date | date_to_xmlschema %}
-      <time datetime="{{ mdate }}" itemprop="dateModified"> {{ mdate | date: date_format }} </time>
-      {%- endif -%} {%- if page.author %}
-      <div>
-        {%- for author in page.author %}
-        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span itemprop="name">{{ author }}</span></span
-        >
-        {%- if forloop.last == false %}, {% endif -%} {% endfor %}
-      </div>
-      {%- endif %}
-    </div>
+<article class="m-4 grid gap-4 sm:m-8 sm:gap-8" itemscope itemtype="http://schema.org/BlogPosting">
+  <header
+    class="relative flex flex-col justify-center bg-zinc-950/5 px-4 py-16 text-sm text-zinc-950 sm:px-8 sm:py-32 sm:text-base dark:bg-white/5 dark:text-white"
+  >
+    <time
+      class="text-zinc-500 dark:text-zinc-400"
+      datetime="{{ page.date | date_to_xmlschema }}"
+      itemprop="datePublished"
+      >{{ page.date | date: "%Y" }}</time
+    >
+    <h1 class="my-4 block text-2xl sm:text-4xl" itemprop="name headline">{{ page.title }}</h1>
+    <p class="text-base text-zinc-500 sm:text-lg dark:text-zinc-400" itemprop="description">{{ page.description }}</p>
   </header>
-  <div itemprop="articleBody">{{ content }}</div>
-  <a href="{{ page.url | relative_url }}" hidden></a>
+  {{ content }}
 </article>
