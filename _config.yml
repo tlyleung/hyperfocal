@@ -30,6 +30,9 @@ instagram_username: hyperfocalphotos
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%-d %B %Y"
 
+# Google Analytics
+google_analytics: G-PVRVJSJ05N
+
 # Collections
 collections:
   posts:
