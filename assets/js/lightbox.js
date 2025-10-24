@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxImage.src = image.src;
     lightboxImage.alt = image.alt;
     lightboxCaption.textContent = image.getAttribute("data-exif") || "";
-    lightboxLink.href = "https://contentcredentials.org/verify?source=" + encodeURIComponent(image.src);
+    lightboxLink.href = "https://verify.contentauthenticity.org?source=" + encodeURIComponent(image.src);
     lightboxPrev.disabled = currentIndex === 0;
     lightboxNext.disabled = currentIndex === images.length - 1;
     if (image.getAttribute("data-orientation") === "portrait") {
