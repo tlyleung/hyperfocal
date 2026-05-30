@@ -7,7 +7,7 @@ layout: base
   {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%} {%- for post in posts -%}
   <a class="group relative block" href="{{ post.url | relative_url }}">
     <img
-      class="transition-brightness brightness-100 duration-300 ease-in-out will-change-auto group-hover:brightness-50"
+      class="brightness-100 transition duration-300 ease-in-out will-change-auto group-hover:brightness-50"
       src="{{ post.image }}"
       alt="{{ post.title | escape }}"
       loading="lazy"
