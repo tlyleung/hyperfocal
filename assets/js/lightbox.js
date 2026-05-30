@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeLightbox() {
     lightbox.close();
     document.body.classList.remove("overflow-hidden"); // Allow background scroll
+    if (currentIndex !== null) images[currentIndex].focus();
   }
 
   lightboxImage.onclick = closeLightbox;
