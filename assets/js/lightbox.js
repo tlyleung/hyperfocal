@@ -70,4 +70,36 @@ document.addEventListener("DOMContentLoaded", () => {
       openLightbox(images[++currentIndex]);
     }
   };
+
+  // Touch / swipe navigation
+  let touchStartX = null;
+  let touchStartY = null;
+
+  lightbox.addEventListener("touchstart", (e) => {
+    if (e.touches.length > 1) {
+      // Multi-touch (e.g. pinch-to-zoom) — ignore
+      touchStartX = null;
+      touchStartY = null;
+    } else {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  lightbox.addEventListener("touchend", (e) => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    touchStartX = null;
+    touchStartY = null;
+
+    // Ignore taps and mostly-vertical scrolls
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+
+    if (dx < 0 && currentIndex < images.length - 1) {
+      openLightbox(images[++currentIndex]); // Swipe left → next
+    } else if (dx > 0 && currentIndex > 0) {
+      openLightbox(images[--currentIndex]); // Swipe right → prev
+    }
+  }, { passive: true });
 });
