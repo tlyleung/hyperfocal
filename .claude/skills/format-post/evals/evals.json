@@ -1,0 +1,17 @@
+{
+  "skill_name": "format-post",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Format a post for the images in assets/images/xin-xin-rong-he/.",
+      "expected_output": "A complete _posts/YYYY-MM-DD-xin-xin-rong-he.md with valid frontmatter, landscape/portrait/diptych includes for all images, correct EXIF strings, blank description, a landscape cover image, and images renamed to descriptive slugs (e.g. stage.jpg, captain.jpg).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create a post from the images in assets/images/leica-welt/.",
+      "expected_output": "A complete _posts/YYYY-MM-DD-leica-welt.md with valid frontmatter, landscape/portrait/diptych includes for all 7 images, correct EXIF strings, blank description, a landscape cover image, and images renamed to descriptive slugs (e.g. logo.jpg, cafe-leitz.jpg).",
+      "files": []
+    }
+  ]
+}
