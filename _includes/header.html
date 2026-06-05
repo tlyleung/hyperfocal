@@ -18,7 +18,7 @@
           <use href="/assets/images/shared/logos.svg#{{ site.title | slugify }}"></use>
         </svg>
 
-        <span style="font-family: '{{ site.sites[site.title].font }}', sans-serif;" class="truncate"
+        <span style="font-family: '{{ site.sites[site.title].font }}', sans-serif;{% if site.sites[site.title].font_style %} font-style: {{ site.sites[site.title].font_style }};{% endif %}" class="truncate pr-1"
           >{{ site.title }}</span
         >
         <svg
@@ -53,7 +53,7 @@
           >
             <use href="/assets/images/shared/logos.svg#{{ title | slugify }}"></use>
           </svg>
-          <div data-slot="label" style="font-family: '{{ dict.font }}', sans-serif;" class="col-start-2 row-start-1">
+          <div data-slot="label" style="font-family: '{{ dict.font }}', sans-serif;{% if dict.font_style %} font-style: {{ dict.font_style }};{% endif %}" class="col-start-2 row-start-1">
             {{ title }}
           </div>
         </a>

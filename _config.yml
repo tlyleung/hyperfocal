@@ -46,6 +46,7 @@ sites:
     url: "https://actamachina.com"
   "hyperfocal":
     font: "Jost"
+    font_style: "italic"
     url: "https://hyperfocalphotos.com"
   "Procedural":
     font: "Nunito Sans"
